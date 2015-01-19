@@ -1,9 +1,14 @@
 <?php
 include '../koneksi.php';
 
-$username = 'resna';
+if ( ! is_login())
+{
+    redirect();
+}
+
+$username = $_SESSION['username'];
 $id_tempat = $_POST['id_tempat'];
-$bintang = 5;
+$bintang = $_POST['bintang'];
 $teks = trim($_POST['teks']);
 
 $sql = "INSERT INTO review (username, id_tempat, bintang, teks, created, modified)
@@ -11,8 +16,11 @@ $sql = "INSERT INTO review (username, id_tempat, bintang, teks, created, modifie
 
 $query = mysqli_query($koneksi, $sql);
 
-if($query) {
+if ($query)
+{
     header("Location:../tempat.php?id_tempat={$id_tempat}&sukses=1");
-} else {
+}
+else
+{
     header("Location:../tempat.php?id_tempat={$id_tempat}&sukses=0");
 }

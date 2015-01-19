@@ -16,17 +16,11 @@ h2, .h2 {
     text-align: center;
     margin-top: 60px;
 
-    &.icon {
-        span {
-            top: -30px;
-        }
-    }
-
     span {
         background: #fff;
         position: relative;
         top: -18px;
-        padding: 15px;
+        padding: 0 15px;
     }
 }
 
@@ -40,7 +34,7 @@ h2, .h2 {
                 color: #111;
                 font-family: 'Bitter', serif;
                 font-weight: bold;
-                line-height: 40px;
+                line-height: 39px;
                 text-shadow: #f6f6f6 1px 1px 1px;
                 text-transform: uppercase;
 
@@ -136,12 +130,17 @@ h2, .h2 {
 .jumbotron {
     margin-bottom: 50px;
     background-size: cover;
-    background-image:url('../../media/banner.jpg');
     background-position: center;
     min-height: 500px;
     color: #ecf0f1;
     position: relative;
     padding: 0;
+
+    .jumbotron-carrousel {
+        background-size: cover;
+        background-position: center;
+        min-height: 500px;
+    }
 
     .jumbotron-bottom {
         position: absolute;
@@ -172,7 +171,7 @@ h2, .h2 {
 }
 
 .blank-jumbotron {
-    height: 100px;
+    height: 60px;
     display: block;
 }
 
@@ -198,7 +197,10 @@ h2, .h2 {
 }
 
 .review-form {
+    margin-bottom: 15px;
+
     .review-avatar {
+        border-radius: 50px;
         width: 50px;
     }
 
@@ -215,11 +217,16 @@ h2, .h2 {
             box-shadow: none;
         }
     }
+
+    .rating {
+        padding-top: 10px;
+    }
 }
 
 .reviews-container {
     .review {
         .review-avatar {
+            border-radius: 50px;
             width: 50px;
         }
         .review-body {
@@ -233,13 +240,13 @@ h2, .h2 {
     }
 }
 
-#map-canvas { height: 323px; margin: 0; padding: 0;}
+#place-main-map { height: 260px; margin: 0; padding: 0;}
 
 .plans-small-container {
     .plan-small {
         margin-bottom: 15px;
 
-        .map {
+        .maps-static {
             height: 200px;
             margin: 0;
             padding: 0;
@@ -278,10 +285,18 @@ h2, .h2 {
 }
 
 .place-small-container {
+    a {
+        color: #000;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
     .place-small {
         margin-bottom: 15px;
 
-        .map, .photo {
+        .maps-static, .photo {
             height: 200px;
             margin: 0;
             padding: 0;

@@ -14,14 +14,11 @@ h2,
   text-align: center;
   margin-top: 60px;
 }
-.title-line.icon span {
-  top: -30px;
-}
 .title-line span {
   background: #fff;
   position: relative;
   top: -18px;
-  padding: 15px;
+  padding: 0 15px;
 }
 .navbar-default {
   background-color: rgba(246, 246, 246, 0.8);
@@ -31,7 +28,7 @@ h2,
   color: #111;
   font-family: 'Bitter', serif;
   font-weight: bold;
-  line-height: 40px;
+  line-height: 39px;
   text-shadow: #f6f6f6 1px 1px 1px;
   text-transform: uppercase;
 }
@@ -107,12 +104,16 @@ h2,
 .jumbotron {
   margin-bottom: 50px;
   background-size: cover;
-  background-image: url('../../media/banner.jpg');
   background-position: center;
   min-height: 500px;
   color: #ecf0f1;
   position: relative;
   padding: 0;
+}
+.jumbotron .jumbotron-carrousel {
+  background-size: cover;
+  background-position: center;
+  min-height: 500px;
 }
 .jumbotron .jumbotron-bottom {
   position: absolute;
@@ -138,7 +139,7 @@ h2,
   top: -26px;
 }
 .blank-jumbotron {
-  height: 100px;
+  height: 60px;
   display: block;
 }
 .place-stats-container {
@@ -156,7 +157,11 @@ h2,
 .place-metas-body .place-meta.place-time {
   border-right: #333 solid 1px;
 }
+.review-form {
+  margin-bottom: 15px;
+}
 .review-form .review-avatar {
+  border-radius: 50px;
   width: 50px;
 }
 .review-form textarea {
@@ -171,7 +176,11 @@ h2,
 .review-form textarea:focus {
   box-shadow: none;
 }
+.review-form .rating {
+  padding-top: 10px;
+}
 .reviews-container .review .review-avatar {
+  border-radius: 50px;
   width: 50px;
 }
 .reviews-container .review .review-body .review-metas-container {
@@ -180,15 +189,15 @@ h2,
 .reviews-container .review .review-body .review-metas-container .review-meta {
   margin-right: 10px;
 }
-#map-canvas {
-  height: 323px;
+#place-main-map {
+  height: 260px;
   margin: 0;
   padding: 0;
 }
 .plans-small-container .plan-small {
   margin-bottom: 15px;
 }
-.plans-small-container .plan-small .map {
+.plans-small-container .plan-small .maps-static {
   height: 200px;
   margin: 0;
   padding: 0;
@@ -217,10 +226,16 @@ h2,
   width: 60px;
   text-align: center;
 }
+.place-small-container a {
+  color: #000;
+}
+.place-small-container a:hover {
+  text-decoration: none;
+}
 .place-small-container .place-small {
   margin-bottom: 15px;
 }
-.place-small-container .place-small .map,
+.place-small-container .place-small .maps-static,
 .place-small-container .place-small .photo {
   height: 200px;
   margin: 0;
