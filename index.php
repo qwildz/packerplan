@@ -166,7 +166,7 @@ while ($row = mysqli_fetch_assoc($query))
         </div>
 
         <div class="row">
-            <h2 class="title-line icon"><span class="fa fa-group"></span><span>Tempat Terheboh</span><span
+            <h2 class="title-line icon"><span class="fa fa-group"></span><span>Tempat Paling Heboh</span><span
                     class="fa fa-group"></span></h2>
             <?php foreach ($terheboh as $t)
             { ?>
