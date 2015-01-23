@@ -181,7 +181,8 @@ $foto = mysqli_query($koneksi, $sql);
                 { ?>
                     <div class="media review-form">
                         <span class="pull-left">
-                            <img class="media-object review-avatar" src="<?php echo get_gravatar($_SESSION['email']); ?>">
+                            <img class="media-object review-avatar"
+                                 src="<?php echo get_gravatar($_SESSION['email']); ?>">
                         </span>
 
                         <div class="media-body review-body">
@@ -218,11 +219,14 @@ $foto = mysqli_query($koneksi, $sql);
                         { ?>
                             <div class="media review">
                                 <a class="pull-left" href="#">
-                                    <img class="media-object review-avatar" src="<?php echo get_gravatar($k['email']); ?>">
+                                    <img class="media-object review-avatar"
+                                         src="<?php echo get_gravatar($k['email']); ?>">
                                 </a>
 
                                 <div class="media-body review-body">
-                                    <h4 class="media-heading review-author"><?php echo $k['nama']; ?></h4>
+                                    <h4 class="media-heading review-author"><a
+                                            href="profile.php?id=<?php echo $k['username']; ?>"><?php echo $k['nama']; ?></a>
+                                    </h4>
 
                                     <div class="review-metas-container">
                                 <span class="review-meta review-date">
@@ -305,7 +309,8 @@ $foto = mysqli_query($koneksi, $sql);
                                 <div class="plan-detail pull-left">
                                     <div class="media">
                                         <a class="pull-left" href="#">
-                                            <img class="media-object plan-avatar" src="<?php echo get_gravatar($_SESSION['email']); ?>">
+                                            <img class="media-object plan-avatar"
+                                                 src="<?php echo get_gravatar($_SESSION['email']); ?>">
                                         </a>
 
                                         <div class="media-body">

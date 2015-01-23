@@ -7,7 +7,7 @@ $sql = "SELECT tempat_wisata.*, AVG(bintang) AS rating, foto
             LEFT JOIN foto_wisata USING (id_tempat)
             GROUP BY tempat_wisata.id_tempat
             ORDER BY rating DESC
-            LIMIT 3";
+            LIMIT 6";
 $query = mysqli_query($koneksi, $sql);
 $terbintang = array();
 while ($row = mysqli_fetch_assoc($query))
@@ -21,7 +21,7 @@ $sql = "SELECT tempat_wisata.*, COUNT(bintang) AS jumlah_komentar, AVG(bintang) 
             LEFT JOIN foto_wisata USING (id_tempat)
             GROUP BY tempat_wisata.id_tempat
             ORDER BY jumlah_komentar DESC
-            LIMIT 3";
+            LIMIT 6";
 $query = mysqli_query($koneksi, $sql);
 $tergosip = array();
 while ($row = mysqli_fetch_assoc($query))
@@ -39,7 +39,7 @@ $sql = "SELECT tempat_wisata.*, COUNT(id_partisipan)+1 AS jumlah_pengunjung, fot
             LEFT JOIN foto_wisata USING (id_tempat)
             GROUP BY tempat_wisata.id_tempat
             ORDER BY jumlah_pengunjung DESC
-            LIMIT 3";
+            LIMIT 6";
 $query = mysqli_query($koneksi, $sql);
 $terheboh = array();
 while ($row = mysqli_fetch_assoc($query))
@@ -80,10 +80,12 @@ while ($row = mysqli_fetch_assoc($query))
 
     <div class="blank-jumbotron"></div>
 
+    <div class="title-parallax" style="background-image:url('media/jumbo-general.jpg');">
+        <h2 class="icon"><span class="fa fa-picture-o"></span><span> Tempat Wisata </span><span
+                class="fa fa-picture-o"></span></h2>
+    </div>
     <div class="container">
         <div class="row">
-            <h2 class="title-line icon"><span class="fa fa-picture-o"></span><span>Tempat Wisata</span><span
-                    class="fa fa-picture-o"></span></h2>
             <?php foreach ($tempat as $t)
             { ?>
                 <div class="col-xs-4 place-small-container">
@@ -108,10 +110,15 @@ while ($row = mysqli_fetch_assoc($query))
                 </div>
             <?php } ?>
         </div>
+    </div>
 
+    <div class="title-parallax" style="background-image:url('media/jumbo-bintang.jpg');">
+        <h2 class="icon"><span class="fa fa-star"></span><span> Tempat Paling Bintang </span><span
+                class="fa fa-star"></span></h2>
+    </div>
+    <div class="container">
         <div class="row">
-            <h2 class="title-line icon"><span class="fa fa-star"></span><span>Tempat Paling Bintang</span><span
-                    class="fa fa-star"></span></h2>
+
             <?php foreach ($terbintang as $t)
             { ?>
                 <div class="col-xs-4 place-small-container">
@@ -136,10 +143,14 @@ while ($row = mysqli_fetch_assoc($query))
                 </div>
             <?php } ?>
         </div>
+    </div>
 
+    <div class="title-parallax" style="background-image:url('media/jumbo-gosip.jpg');">
+        <h2 class="icon"><span class="fa fa-comments"></span><span> Tempat Tergosip </span><span
+                class="fa fa-comments"></span></h2>
+    </div>
+    <div class="container">
         <div class="row">
-            <h2 class="title-line icon"><span class="fa fa-comments"></span><span>Tempat Tergosip</span><span
-                    class="fa fa-comments"></span></h2>
             <?php foreach ($tergosip as $t)
             { ?>
                 <div class="col-xs-4 place-small-container">
@@ -164,10 +175,14 @@ while ($row = mysqli_fetch_assoc($query))
                 </div>
             <?php } ?>
         </div>
+    </div>
 
+    <div class="title-parallax" style="background-image:url('media/jumbo-heboh.jpg');">
+        <h2 class="icon"><span class="fa fa-group"></span><span> Tempat Paling Heboh </span><span
+                class="fa fa-group"></span></h2>
+    </div>
+    <div class="container">
         <div class="row">
-            <h2 class="title-line icon"><span class="fa fa-group"></span><span>Tempat Paling Heboh</span><span
-                    class="fa fa-group"></span></h2>
             <?php foreach ($terheboh as $t)
             { ?>
                 <div class="col-xs-4 place-small-container">

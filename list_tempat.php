@@ -48,7 +48,12 @@ else if ($urut == 'heboh')
 }
 else
 {
-    $sql = "SELECT tempat_wisata.*, foto FROM tempat_wisata LEFT JOIN foto_wisata USING (id_tempat) ORDER BY created DESC";
+    $sql = "SELECT tempat_wisata.*, AVG(bintang) AS rating, foto
+            FROM tempat_wisata
+            LEFT JOIN review USING (id_tempat)
+            LEFT JOIN foto_wisata USING (id_tempat)
+            GROUP BY tempat_wisata.id_tempat
+            ORDER BY created DESC";
 
     $bg = 'jumbo-general.jpg';
     $fa = 'fa-picture-o';
@@ -67,7 +72,7 @@ while ($row = mysqli_fetch_assoc($query))
 <head lang="id">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>PackerPlan</title>
+    <title><?php echo $title; ?> - PackerPlan</title>
 
     <!-- Bootstrap -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -91,22 +96,22 @@ while ($row = mysqli_fetch_assoc($query))
                 class="fa <?php echo $fa; ?>"></span></h2>
 
         <ul class="nav nav-tabs">
-            <li role="presentation" class="<?php if(!$urut) echo 'active'; ?>">
+            <li role="presentation" class="<?php if ( ! $urut) echo 'active'; ?>">
                 <a href="list_tempat.php" role="button">
                     <span class="fa fa-clock-o"></span> Terbaru
                 </a>
             </li>
-            <li role="presentation" class="<?php if($urut=='bintang') echo 'active'; ?>">
+            <li role="presentation" class="<?php if ($urut == 'bintang') echo 'active'; ?>">
                 <a href="list_tempat.php?urut=bintang" role="button">
                     <span class="fa fa-star"></span> Terbintang
                 </a>
             </li>
-            <li role="presentation" class="<?php if($urut=='gosip') echo 'active'; ?>">
+            <li role="presentation" class="<?php if ($urut == 'gosip') echo 'active'; ?>">
                 <a href="list_tempat.php?urut=gosip" role="button">
                     <span class="fa fa-comments"></span> Tergosip
                 </a>
             </li>
-            <li role="presentation" class="<?php if($urut=='heboh') echo 'active'; ?>">
+            <li role="presentation" class="<?php if ($urut == 'heboh') echo 'active'; ?>">
                 <a href="list_tempat.php?urut=heboh" role="button">
                     <span class="fa fa-group"></span> Terheboh
                 </a>
@@ -145,24 +150,26 @@ while ($row = mysqli_fetch_assoc($query))
                     <?php } ?>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-            <script src="assets/js/jquery.min.js"></script>
-            <!-- Include all compiled plugins (below), or include individual files as needed -->
-            <script src="assets/js/bootstrap.min.js"></script>
-            <script>
-                $(function () {
-                    var jumboHeight = $('.jumbotron').outerHeight();
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="assets/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            var jumboHeight = $('.jumbotron').outerHeight();
 
-                    function parallax() {
-                        var scrolled = $(window).scrollTop();
-                        $('.bg-parallax').css('height', (jumboHeight - scrolled) + 'px');
-                    }
+            function parallax() {
+                var scrolled = $(window).scrollTop();
+                $('.bg-parallax').css('height', (jumboHeight - scrolled) + 'px');
+            }
 
-                    $(window).scroll(function (e) {
-                        parallax();
-                    });
-                })
-            </script>
+            $(window).scroll(function (e) {
+                parallax();
+            });
+        })
+    </script>
 </body>
 </html>
