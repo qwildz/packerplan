@@ -131,15 +131,52 @@ h2, .h2 {
     margin-bottom: 50px;
     background-size: cover;
     background-position: center;
-    min-height: 500px;
+    height: 500px;
     color: #ecf0f1;
     position: relative;
     padding: 0;
 
-    .jumbotron-carrousel {
-        background-size: cover;
-        background-position: center;
-        min-height: 500px;
+    &.small {
+        background: none;
+        height: 300px;
+        padding-top: 150px;
+
+        .jumbotron-carrousel {
+            padding-top: 120px;
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 48px;
+            text-align: center;
+            margin:0;
+        }
+
+        .nav-tabs {
+            border: none;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            margin-left: -215px;
+        }
+    }
+
+    .carousel {
+        height:100%;
+
+        .carousel-inner {
+            height:100%;
+
+            .item {
+                height: 100%;
+
+                .jumbotron-carrousel {
+                    background-size: cover;
+                    background-position: center;
+                    height: 100%;
+                }
+            }
+        }
     }
 
     .jumbotron-bottom {
@@ -168,6 +205,17 @@ h2, .h2 {
             }
         }
     }
+}
+
+.bg-parallax {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: -1;
 }
 
 .blank-jumbotron {
@@ -305,6 +353,7 @@ h2, .h2 {
         .photo {
             height: 150px;
             background-position: center;
+            background-size: cover;
         }
 
         .place-details-container {
