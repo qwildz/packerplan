@@ -10,7 +10,7 @@
 
     <?php
     //query ke database dg SELECT table tempat wisata diurutkan berdasarkan id paling kecil
-    $query = mysql_query("SELECT a.username,a.nama,c.bintang,c.teks,c.id_review FROM USER a,review c WHERE (a.username=c.username) AND c.id_tempat = {$id}") or die(mysql_error());
+    $query = mysql_query("SELECT a.username,a.nama,c.bintang,c.teks,c.id_review FROM user a,review c WHERE (a.username=c.username) AND c.id_tempat = {$id}") or die(mysql_error());
 
     //cek, apakakah hasil query di atas mendapatkan hasil atau tidak (data kosong atau tidak)
     if (mysql_num_rows($query) == 0)
