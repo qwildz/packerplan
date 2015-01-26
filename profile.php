@@ -51,7 +51,7 @@ $user = mysqli_fetch_assoc($query);
                 <div class="nama"><?php echo $user['nama']; ?></div>
                 <a class="btn  btn-primary">Edit Profile</a>
             </div>
-            <div class="col-xs-8 profile-content">
+            <div class="col-md-8 profile-content">
                 <ul class="nav nav-tabs">
                     <li role="presentation" class="<?php if ( ! $tab) echo 'active'; ?>"><a
                             href="?id=<?php echo $username; ?>">Info</a></li>

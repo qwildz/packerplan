@@ -1,5 +1,5 @@
 <?php
-$sql = "SELECT review.*, tempat_wisata.id_tempat, tempat_wisata.nama_tempat, foto_wisata.foto
+$sql = "SELECT review.*, tempat_wisata.id_tempat tempat_wisata.nama_tempat, foto_wisata.foto
         FROM review
         JOIN tempat_wisata USING (id_tempat)
         JOIN foto_wisata USING (id_tempat)
