@@ -33,12 +33,9 @@ if ($query)
         $i++;
     }
 
-    var_dump($_POST);
-    die();
-
-    header("Location:../tempat.php?id_tempat={$id_tempat}&sukses=1");
+    header("Location:../detail_rencana.php?id={$id}&sukses=1");
 }
 else
 {
-    header("Location:../tempat.php?id_tempat={$id_tempat}&sukses=0");
+    header("Location:../rencana.php?sukses=0");
 }
