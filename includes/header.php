@@ -12,6 +12,7 @@
                 <!--<li class="active"><a href="#">Home</a></li>-->
                 <li><a href="list_tempat.php"><i class="fa fa-2x fa-map-marker"></i> Wisata</a></li>
                 <li><a href="#contact"><i class="fa fa-2x fa-male"></i> Cawers</a></li>
+                <li><a href="rencana.php"><i class="fa fa-2x fa-th-list"></i> Rencana</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <?php if(is_login()) { ?>

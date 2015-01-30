@@ -29,6 +29,26 @@ $(function () {
     });
 
     bind();
+
+    if ($('.daftar-rute .rencana').size() > 0) {
+        mapReset();
+
+        var button = $('.daftar-rute .rencana').find('.rencana-add');
+
+        var id = button.data('id');
+        var lat = button.data('lat');
+        var lng = button.data('lng') * 1;
+
+        rencana[i_rencana] = {id: id, lat: lat, lng: lng};
+        i_rencana++;
+
+        createBounds();
+        createMarkers();
+        createRoutes();
+
+        map.fitBounds(bounds);
+        fillRoute();
+    }
 });
 
 function resize() {
@@ -179,5 +199,4 @@ function fillRoute() {
             routes += id;
     }
     $('#rute-form').val(routes);
-    alert(routes);
 }

@@ -293,7 +293,7 @@ $foto = mysqli_query($koneksi, $sql);
             <div class="col-xs-4 col col-xs-offset-1">
                 <div id="place-main-map" class="maps" data-latitude="<?php echo $tempat['latitude']; ?>"
                      data-longitude="<?php echo $tempat['longitude']; ?>"></div>
-                <a class="btn btn-primary btn-block btn-lg"> Buat Rencana </a>
+                <a class="btn btn-primary btn-block btn-lg" href="rencana.php?start=<?php echo $id_tempat; ?>"> Buat Rencana </a>
 
                 <h2 class="title-line"><span> Rencana Cawers </span></h2>
 
