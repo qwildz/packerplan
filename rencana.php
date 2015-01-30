@@ -1,6 +1,11 @@
 <?php
 include 'koneksi.php';
 
+if ( ! is_login())
+{
+    redirect('login.php');
+}
+
 $sql = "SELECT tempat_wisata.*, AVG(bintang) AS rating, foto
             FROM tempat_wisata
             LEFT JOIN foto_wisata USING (id_tempat)
@@ -43,52 +48,83 @@ while ($row = mysqli_fetch_assoc($query))
 
     <div class="map-full" id="rencana-map"></div>
     <div class="rencana-full">
-        <div class="rencana-height"></div>
-        <hr>
-        <div class="reviews-container rencana-container">
-            <ul class="nav nav-tabs">
-                <li role="presentation" class="<?php if ( ! $tab) echo 'active'; ?>"><a
-                        href="#">Daftar Tempat</a></li>
-                <li role="presentation" class="<?php if ($tab == 'rencana') echo 'active'; ?>"><a
-                        href="#">Rute Rencana</a></li>
-            </ul>
+        <form action="process/submit-rencana.php" method="post">
+            <div class="rencana-height"></div>
 
-            <?php if ($tempat)
-            {
-                foreach ($tempat as $k)
-                { ?>
-                    <div class="media review rencana" id="tempat-<?php echo $k['id_tempat']; ?>">
-                        <a class="pull-left" href="#">
-                            <img class="media-object review-avatar rencana-photo" style="background-image: url('media/<?php echo $k['foto']; ?>');">
-                        </a>
+            <input type="text" name="nama_rencana" placeholder="Nama Rencana" class="form-control">
+            <div class="rencana-height"></div>
+            <input type="date" name="waktu" placeholder="Waktu Rencana" class="form-control">
 
-                        <div class="pull-right">
-                            <a class="btn btn-sm btn-primary rencana-add" data-identifier="tempat-<?php echo $k['id_tempat']; ?>" data-lat="<?php echo $k['latitude']; ?>" data-lng="<?php echo $k['longitude']; ?>"><span class="fa fa-plus"></span></a>
-                        </div>
+            <hr>
+            <div class="reviews-container rencana-container" role="tabpanel">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="<?php if ( ! $tab) echo 'active'; ?>"><a
+                            href="#tempat" aria-controls="tempat" role="tab" data-toggle="tab">Daftar Tempat</a></li>
+                    <li role="presentation" class="<?php if ($tab == 'rencana') echo 'active'; ?>"><a
+                            href="#rute" aria-controls="rute" role="tab" data-toggle="tab">Rute Rencana</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="daftar-tempat tab-pane active" id="tempat" role="tabpanel">
+                        <?php if ($tempat)
+                        {
+                            $i = 1;
+                            foreach ($tempat as $k)
+                            { ?>
+                                <div class="media review rencana" id="tempat-<?php echo $k['id_tempat']; ?>">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object review-avatar rencana-photo"
+                                             style="background-image: url('media/<?php echo $k['foto']; ?>');">
+                                    </a>
+
+                                    <div class="pull-right">
+                                        <a class="btn btn-sm btn-primary rencana-add"
+                                           data-id="tempat-<?php echo $k['id_tempat']; ?>"
+                                           data-pos="<?php echo $i; ?>"
+                                           data-lat="<?php echo $k['latitude']; ?>"
+                                           data-lng="<?php echo $k['longitude']; ?>"><span
+                                                class="fa fa-plus"></span></a>
+                                        <a class="btn btn-sm btn-danger rencana-remove hidden"
+                                           data-id="tempat-<?php echo $k['id_tempat']; ?>"
+                                           data-pos="<?php echo $i; ?>"
+                                           data-lat="<?php echo $k['latitude']; ?>"
+                                           data-lng="<?php echo $k['longitude']; ?>"><span
+                                                class="fa fa-minus"></span></a>
+                                    </div>
 
 
-                        <div class="media-body review-body rencana-body">
-                            <h4 class="media-heading review-author"><?php echo $k['nama_tempat']; ?>
-                            </h4>
+                                    <div class="media-body review-body rencana-body">
+                                        <h4 class="media-heading review-author"><?php echo $k['nama_tempat']; ?>
+                                        </h4>
 
-                            <div class="review-metas-container rencana-metas-container">
+                                        <div class="review-metas-container rencana-metas-container">
                                 <span class="review-meta review-date">
                                     <i class="fa fa-map-marker"></i> <?php echo $k['alamat']; ?>
                                 </span>
                                 <span class="review-meta review-rating">
                                     <i class="fa fa-star-o"></i> <?php echo round($k['rating'], 1); ?>
                                 </span>
-                            </div>
-                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php $i++;
+                            }
+                        }
+                        else
+                        { ?>
+                            <div class="alert alert-warning">Tidak ditemukan tempat wisata.</div>
+                        <?php } ?>
                     </div>
-                <?php }
-            }
-            else
-            { ?>
-                <div class="alert alert-warning">Tidak ditemukan tempat wisata.</div>
-            <?php } ?>
-        </div>
-        <div class="rencana-height"></div>
+                    <div class="daftar-rute tab-pane" id="rute" role="tabpanel">
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <input type="hidden" name="rute" id="rute-form">
+            <button type="submit" class="btn btn-primary pull-right">Simpan</button>
+            <div class="clearfix"></div>
+            <div class="rencana-height"></div>
+        </form>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
