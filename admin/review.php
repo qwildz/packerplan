@@ -65,7 +65,7 @@ include('koneksi.php');
 
                                     <?php
                                     //query ke database dg SELECT table tempat wisata diurutkan berdasarkan id paling kecil
-                                    $query = mysql_query("SELECT a.username,a.nama,b.nama_tempat,c.bintang,c.teks,c.id_review FROM USER a,tempat_wisata b,review c WHERE (a.username=c.username) AND (b.id_tempat=c.id_tempat)") or die(mysql_error());
+                                    $query = mysql_query("SELECT a.username,a.nama,b.nama_tempat,c.bintang,c.teks,c.id_review FROM user a,tempat_wisata b,review c WHERE (a.username=c.username) AND (b.id_tempat=c.id_tempat)") or die(mysql_error());
 
                                     //cek, apakakah hasil query di atas mendapatkan hasil atau tidak (data kosong atau tidak)
                                     if (mysql_num_rows($query) == 0)

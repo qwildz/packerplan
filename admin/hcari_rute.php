@@ -59,7 +59,7 @@ include('koneksi.php');
 										<?php
 										$cari = trim($_POST['cari']);
 										//query ke database dg SELECT table tempat wisata diurutkan berdasarkan id paling kecil
-										$query = mysql_query("SELECT c.id_rute,a.nama_tempat,d.nama,b.waktu,c.urutan FROM tempat_wisata a,rencana b,rute_rencana c,USER d WHERE (a.id_tempat=c.id_tempat) AND (b.id_rencana=c.id_rencana) AND (b.username=d.username) AND c.username LIKE '%$cari%'ORDER BY waktu ASC") or die(mysql_error());
+										$query = mysql_query("SELECT c.id_rute,a.nama_tempat,d.nama,b.waktu,c.urutan FROM tempat_wisata a,rencana b,rute_rencana c,user d WHERE (a.id_tempat=c.id_tempat) AND (b.id_rencana=c.id_rencana) AND (b.username=d.username) AND c.username LIKE '%$cari%'ORDER BY waktu ASC") or die(mysql_error());
 										
 										//cek, apakakah hasil query di atas mendapatkan hasil atau tidak (data kosong atau tidak)
 										if(mysql_num_rows($query) == 0){	//ini artinya jika data hasil query di atas kosong

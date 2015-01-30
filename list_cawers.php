@@ -4,7 +4,7 @@ include 'koneksi.php';
 $sql = "SELECT user.*,
           (SELECT COUNT(*) FROM rencana WHERE rencana.username = user.username) AS rencana,
           (SELECT COUNT(*) FROM partisipan WHERE partisipan.username = user.username) AS bareng
-        FROM USER
+        FROM user
         ORDER BY user.created DESC";
 
 $query = mysqli_query($koneksi, $sql);
@@ -62,7 +62,7 @@ while ($row = mysqli_fetch_assoc($query))
                                     <i class="fa fa-th-list"></i> <?php echo $k['rencana']; ?> Rencana
                                 </span>
                                 <span class="review-meta review-time">
-                                    <i class="fa fa-group"></i> <?php echo $k['bareng']; ?>x Ngikut
+                                    <i class="fa fa-group"></i> <?php echo $k['bareng']; ?>x  Ngikut
                                 </span>
                                 </div>
                             </div>

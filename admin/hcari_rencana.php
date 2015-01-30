@@ -58,7 +58,7 @@ include('koneksi.php');
 										<?php
 										$cari = trim($_POST['cari']);
 										//query ke database dg SELECT table tempat wisata diurutkan berdasarkan id paling kecil
-										$query = mysql_query("SELECT a.id_rencana,b.username,b.nama,a.waktu FROM rencana a,USER b WHERE (a.username=b.username) AND (a.username LIKE '%$cari%')") or die(mysql_error());
+										$query = mysql_query("SELECT a.id_rencana,b.username,b.nama,a.waktu FROM rencana a,user b WHERE (a.username=b.username) AND (a.username LIKE '%$cari%')") or die(mysql_error());
 										
 										//cek, apakakah hasil query di atas mendapatkan hasil atau tidak (data kosong atau tidak)
 										if(mysql_num_rows($query) == 0){	//ini artinya jika data hasil query di atas kosong

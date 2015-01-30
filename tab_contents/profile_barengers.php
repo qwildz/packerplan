@@ -1,7 +1,7 @@
 <?php
 $sql = "SELECT user.*, COUNT(*) combo
         FROM partisipan
-	    JOIN USER USING (username)
+	    JOIN user USING (username)
         JOIN rencana USING (id_rencana)
         WHERE rencana.username = '{$username}'
         GROUP BY username

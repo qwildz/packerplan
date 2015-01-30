@@ -65,7 +65,7 @@ include('koneksi.php');
                                     <?php
                                     $cari = trim($_POST['cari']);
                                     //query ke database dg SELECT table tempat wisata diurutkan berdasarkan id paling kecil
-                                    $query = mysql_query("SELECT c.id_komentar, a.username,a.nama,a.nama,b.waktu,c.teks FROM USER a,rencana b,komentar c WHERE (a.username=c.username) AND (b.username=a.username) AND (c.username LIKE '%$cari%')	") or die(mysql_error());
+                                    $query = mysql_query("SELECT c.id_komentar, a.username,a.nama,a.nama,b.waktu,c.teks FROM user a,rencana b,komentar c WHERE (a.username=c.username) AND (b.username=a.username) AND (c.username LIKE '%$cari%')	") or die(mysql_error());
 
                                     //cek, apakakah hasil query di atas mendapatkan hasil atau tidak (data kosong atau tidak)
                                     if (mysql_num_rows($query) == 0)
