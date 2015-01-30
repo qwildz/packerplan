@@ -7,11 +7,17 @@ $query = mysqli_query($koneksi, $sql);
 
 $tempat = mysqli_fetch_assoc($query);
 
-$sql = "SELECT COUNT(*)+1 AS jumlah_pengunjung
+$sql = "SELECT (SELECT COUNT(*) AS jumlah_pengunjung
         FROM partisipan
         JOIN rencana USING (id_rencana)
         JOIN rute_rencana USING (id_rencana)
-        WHERE id_tempat = {$id_tempat}";
+        WHERE id_tempat = {$id_tempat})
++
+        (SELECT COUNT(*) AS jumlah_pengunjung
+        FROM rencana
+        JOIN rute_rencana USING (id_rencana)
+        WHERE id_tempat = {$id_tempat}
+        GROUP BY id_rencana) AS jumlah_pengunjung";
 $query = mysqli_query($koneksi, $sql);
 
 $jumlah_pengunjung = mysqli_fetch_row($query)[0];
@@ -37,7 +43,7 @@ $sql = "SELECT rencana.*, GROUP_CONCAT(id_tempat) ids_tempat, COUNT(id_tempat) A
         FROM rute_rencana
         JOIN rencana USING (id_rencana)
         JOIN tempat_wisata USING (id_tempat)
-        JOIN (
+        LEFT JOIN (
             SELECT p.id_rencana, COUNT(p.id_partisipan) AS pengikut
             FROM partisipan p
             GROUP BY p.id_rencana
@@ -46,6 +52,7 @@ $sql = "SELECT rencana.*, GROUP_CONCAT(id_tempat) ids_tempat, COUNT(id_tempat) A
         HAVING ids_tempat LIKE '%{$id_tempat}%'
         ORDER BY pengikut DESC
         LIMIT 2";
+
 $rencana = mysqli_query($koneksi, $sql);
 
 $sql = "SELECT IF(m.id_tempat,1,0) AS has_match, t.*, foto,
@@ -142,10 +149,10 @@ $foto = mysqli_query($koneksi, $sql);
                 </div>
                 <div class="place-stats-container pull-right bitter">
                     <div class="place-stat stat-people pull-left">
-                        <i class="fa fa-male"></i> <span><?php echo $jumlah_pengunjung; ?></span>
+                        <i class="fa fa-male"></i> <span><?php echo (int) $jumlah_pengunjung; ?></span>
                     </div>
                     <div class="place-stat stat-comments pull-left">
-                        <i class="fa fa-comments"></i> <span><?php echo $jumlah_review; ?></span>
+                        <i class="fa fa-comments"></i> <span><?php echo (int) $jumlah_review; ?></span>
                     </div>
                     <div class="place-stat stat-ratings pull-left">
                         <i class="fa fa-star"></i> <span><?php echo round($rating, 1); ?></span>
@@ -315,8 +322,8 @@ $foto = mysqli_query($koneksi, $sql);
 
                                         <div class="media-body">
                                             <h5 class="media-heading"><?php echo $row['nama_rencana']; ?></h5>
-                                            <span><?php echo $row['tempat']; ?> tempat | <?php echo $row['pengikut']; ?>
-                                                pengikut</span>
+                                            <span><?php echo $row['tempat']; ?> tempat | <?php echo (int) $row['pengikut']; ?>
+                                                barengers</span>
                                         </div>
                                     </div>
                                 </div>
