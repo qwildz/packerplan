@@ -38,10 +38,11 @@ while ($row = mysqli_fetch_assoc($review))
 }
 $rating /= $jumlah_review;
 
-$sql = "SELECT rencana.*, GROUP_CONCAT(id_tempat) ids_tempat, COUNT(id_tempat) AS tempat, pengikut,
+$sql = "SELECT rencana.*, user.*, GROUP_CONCAT(id_tempat) ids_tempat, COUNT(id_tempat) AS tempat, pengikut,
             GROUP_CONCAT(latitude) AS latitude, GROUP_CONCAT(longitude) AS longitude
         FROM rute_rencana
         JOIN rencana USING (id_rencana)
+        JOIN user USING (username)
         JOIN tempat_wisata USING (id_tempat)
         LEFT JOIN (
             SELECT p.id_rencana, COUNT(p.id_partisipan) AS pengikut
@@ -317,11 +318,12 @@ $foto = mysqli_query($koneksi, $sql);
                                     <div class="media">
                                         <a class="pull-left" href="#">
                                             <img class="media-object plan-avatar"
-                                                 src="<?php echo get_gravatar($_SESSION['email']); ?>">
+                                                 src="<?php echo get_gravatar($row['email']); ?>">
                                         </a>
 
                                         <div class="media-body">
-                                            <h5 class="media-heading"><?php echo $row['nama_rencana']; ?></h5>
+                                            <h5 class="media-heading"><a
+                                                    href="detail_rencana.php?id=<?php echo $row['id_rencana']; ?>"><?php echo $row['nama_rencana']; ?></a></h5>
                                             <span><?php echo $row['tempat']; ?> tempat | <?php echo (int) $row['pengikut']; ?>
                                                 barengers</span>
                                         </div>

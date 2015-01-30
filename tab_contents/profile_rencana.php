@@ -48,8 +48,11 @@ while ($row = mysqli_fetch_assoc($rencana))
                         <div class="plan-detail pull-left">
                             <div class="media">
                                 <div class="media-body">
-                                    <h5 class="media-heading"><?php echo $row['nama_rencana']; ?></h5>
-                                            <span><?php echo $row['tempat']; ?> tempat | <?php echo (int) $row['pengikut']; ?>
+                                    <h5 class="media-heading"><a
+                                            href="detail_rencana.php?id=<?php echo $row['id_rencana']; ?>"><?php echo $row['nama_rencana']; ?></a>
+                                    </h5>
+                                            <span><?php echo $row['tempat']; ?>
+                                                tempat | <?php echo (int) $row['pengikut']; ?>
                                                 barengers</span>
                                 </div>
                             </div>
@@ -66,6 +69,6 @@ while ($row = mysqli_fetch_assoc($rencana))
     }
     else
     { ?>
-        <div class="alert alert-warning">Belum membuat review.</div>
+        <div class="alert alert-warning">Belum membuat rencana.</div>
     <?php } ?>
 </div>
