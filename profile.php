@@ -49,7 +49,7 @@ $user = mysqli_fetch_assoc($query);
                 <h3 class="username"><?php echo $user['username']; ?></h3>
 
                 <div class="nama"><?php echo $user['nama']; ?></div>
-                <a class="btn  btn-primary">Edit Profile</a>
+                <a href="edit_profile.php" class="btn btn-primary">Edit Profile</a>
             </div>
             <div class="col-md-8 profile-content">
                 <ul class="nav nav-tabs">
@@ -78,19 +78,5 @@ $user = mysqli_fetch_assoc($query);
     <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=true"></script>
     <script src="assets/js/gmaps.js"></script>
     <script src="assets/js/tempat.js"></script>
-    <script>
-        $(function () {
-            var jumboHeight = $('.jumbotron').outerHeight();
-
-            function parallax() {
-                var scrolled = $(window).scrollTop();
-                $('.bg-parallax').css('height', (jumboHeight - scrolled) + 'px');
-            }
-
-            $(window).scroll(function (e) {
-                parallax();
-            });
-        })
-    </script>
 </body>
 </html>
