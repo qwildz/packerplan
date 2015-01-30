@@ -54,6 +54,10 @@ while ($row = mysqli_fetch_assoc($query))
 {
     $partisipan[] = $row;
 }
+
+$sql = "SELECT * FROM partisipan WHERE username = '{$_SESSION['username']}' AND id_rencana = {$id_rencana}";
+$query = mysqli_query($koneksi, $sql);
+$ngikut = mysqli_num_rows($query);
 ?>
 <!DOCTYPE html>
 <html>
@@ -89,6 +93,23 @@ while ($row = mysqli_fetch_assoc($query))
                         <img class="media-object review-avatar"
                              src="<?php echo get_gravatar($rencana['email'], 50); ?>">
                     </a>
+
+                    <div class="pull-right">
+                        <?php if ($rencana['username'] != $_SESSION['username'])
+                        {
+                            if ($ngikut)
+                            { ?>
+                                <a href="process/ngikut.php?id=<?php echo $id_rencana; ?>"
+                                   class="btn btn-danger btn-sm">Gak Ngikut</a>
+
+                            <?php }
+                            else
+                            { ?>
+                                <a href="process/ngikut.php?id=<?php echo $id_rencana; ?>"
+                                   class="btn btn-primary btn-sm">Ngikut</a>
+                            <?php }
+                        } ?>
+                    </div>
 
                     <div class="media-body review-body" style="margin-bottom: 10px">
                         <h4 class="media-heading review-author"><a
@@ -164,25 +185,31 @@ while ($row = mysqli_fetch_assoc($query))
                 <h2 class="title-line"><span>Barengers</span></h2>
 
                 <?php
-                foreach ($partisipan as $k)
-                { ?>
-                    <div class="media review">
+                if ($partisipan)
+                {
+                    foreach ($partisipan as $k)
+                    { ?>
+                        <div class="media review">
                         <span class="pull-left">
                             <?php echo $k['urutan']; ?>
                         </span>
-                        <a class="pull-left" href="#">
-                            <img class="media-object review-avatar"
-                                 src="<?php echo get_gravatar($k['email'], 50); ?>">
-                        </a>
+                            <a class="pull-left" href="#">
+                                <img class="media-object review-avatar"
+                                     src="<?php echo get_gravatar($k['email'], 50); ?>">
+                            </a>
 
-                        <div class="media-body review-body">
-                            <h4 class=""><a
-                                    href="profile.php?id=<?php echo $k['username']; ?>"><?php echo $k['nama']; ?></a>
-                            </h4>
+                            <div class="media-body review-body">
+                                <h4 class=""><a
+                                        href="profile.php?id=<?php echo $k['username']; ?>"><?php echo $k['nama']; ?></a>
+                                </h4>
+                            </div>
                         </div>
-                    </div>
-                <?php }
-                ?>
+                    <?php }
+                }
+                else
+                { ?>
+                    <div class="alert alert-warning">Belum ada barengers.</div>
+                <?php } ?>
             </div>
         </div>
     </div>
